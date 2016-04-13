@@ -25,7 +25,7 @@ namespace TempMonitor.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C....")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server=AZG-LAPTOP\\SQLEXPRESS;Database=SensorDatabase;User Id=sa;Password=hsnsce;")]
         public string ConString {
             get {
                 return ((string)(this["ConString"]));
