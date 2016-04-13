@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="ConString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Server=AZG-LAPTOP\SQLEXPRESS;Database=SensorDatabase;User Id=sa;Password=hsnsce;</Value>
+      <Value Profile="(Default)">Data Source=192.168.1.2,49172;Network Library=DBMSSOCN;Initial Catalog=SensorDatabase;User Id=sa;Password=v5E5et;</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -20,13 +20,26 @@ namespace TempMonitor
         public Form1()
         {
             InitializeComponent();
-            setup();
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            rdbCelsius.Checked = true;
+            crtTemp.ChartAreas.Add("TempArea");
+            crtTemp.ChartAreas["TempArea"].AxisX.Interval = 48;
+            crtTemp.Series.Add("temp");
+            crtTemp.Series["temp"].Color = Color.LawnGreen;
+            crtTemp.Series["temp"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            crtTemp.Series["temp"].XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.DateTime;
+            crtTemp.Series["temp"].YValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Int32;
+            crtTemp.Series["temp"].XValueMember = "DateTime";
+            crtTemp.Series["temp"].YValueMembers = "Celsius";
+            crtTemp.DataBind();
         }
         public DataTable fillTable()
         {
    
             DataTable tbl = new DataTable();
-            string sqlQuery = "SELECT * FROM view_data";
+            string sqlQuery = "SELECT * FROM view_log";
             try
             {
                 using (SqlConnection con = new SqlConnection(Settings.Default.ConString))
@@ -52,11 +65,31 @@ namespace TempMonitor
         {
             table = fillTable();
             dgvTemp.DataSource = table;
+            setup();
         }
         private void setup()
         {
-
+            crtTemp.DataSource = getView(true);
+            crtTemp.DataBind();
         }
+        private DataTable getView(bool unit)
+        {
+            var filter = new DataView(table);
+            string unitType = "";
+            
+            if (unit)
+            {
+                unitType = "Celsius";
+            }
+            else if(!unit)
+            {
+                unitType = "Farenheit";
+            }
+
+            return filter.ToTable(false, "DateTime", unitType);
+        }
+
+      
     }
     
 }
