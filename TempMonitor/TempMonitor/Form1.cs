@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Data.Odbc;
 using TempMonitor.Properties;
 
 
@@ -43,9 +44,10 @@ namespace TempMonitor
             try
             {
                 using (SqlConnection con = new SqlConnection(Settings.Default.ConString))
+                
                 {
                     con.Open();
-
+                    
                     using (SqlCommand cmd = new SqlCommand(sqlQuery, con))
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
@@ -60,10 +62,37 @@ namespace TempMonitor
             }
             return tbl;
         }
+        public DataTable fillODBC()
+        {
+
+            DataTable tbl = new DataTable();
+            string sqlQuery = "SELECT * FROM view_log";
+            try
+            {
+                using (OdbcConnection c = new OdbcConnection(Settings.Default.ConString))
+
+                {
+                    c.Open();
+
+                    using (OdbcCommand cm = new OdbcCommand(sqlQuery, c))
+                    using (OdbcDataAdapter da = new OdbcDataAdapter(cm))
+                    {
+                        da.Fill(tbl);
+                    }
+                    c.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            return tbl;
+        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
-            table = fillTable();
+            table = fillODBC();
             dgvTemp.DataSource = table;
             setup();
         }

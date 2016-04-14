@@ -3,7 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="ConString" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Data Source=192.168.1.2,49172;Network Library=DBMSSOCN;Initial Catalog=SensorDatabase;User Id=sa;Password=v5E5et;</Value>
+      <Value Profile="(Default)">DSN=MyODBC;uid=sa;Pwd=v5E5et;</Value>
+    </Setting>
+    <Setting Name="ds" Type="System.String" Scope="User">
+      <Value Profile="(Default)">DSN=MyODBC;uid=sa;Pwd=v5E5et;</Value>
     </Setting>
   </Settings>
 </SettingsFile>

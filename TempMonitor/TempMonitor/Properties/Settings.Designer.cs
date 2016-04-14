@@ -25,14 +25,25 @@ namespace TempMonitor.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.2,49172;Network Library=DBMSSOCN;Initial Catalog=SensorData" +
-            "base;User Id=sa;Password=v5E5et;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("DSN=MyODBC;uid=sa;Pwd=v5E5et;")]
         public string ConString {
             get {
                 return ((string)(this["ConString"]));
             }
             set {
                 this["ConString"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("DSN=MyODBC;uid=sa;Pwd=v5E5et;")]
+        public string ds {
+            get {
+                return ((string)(this["ds"]));
+            }
+            set {
+                this["ds"] = value;
             }
         }
     }
